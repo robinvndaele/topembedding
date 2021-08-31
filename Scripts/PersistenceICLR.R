@@ -9,16 +9,17 @@ library("gridExtra") # arrange multiple plots
 
 # We load and plot a point cloud data set representing the ICLR acronym.
 
-df <- read.table(file.path("Data", "ICLR.csv"), sep=",", col.names=c("x", "y"))
-ggplot(df, aes(x=x, y=y)) +
+df <- read.table(file.path("Data", "ICLR.csv"), col.names=c("x", "y", "group"))
+ggplot(df, aes(x=x, y=y, col=group)) +
   geom_point(size=1.5) +
   coord_fixed() +
   theme_bw() +
-  theme(plot.title=element_text(hjust=0.5, size=22), text=element_text(size=20))
+  theme(plot.title=element_text(hjust=0.5, size=22), text=element_text(size=20), 
+        legend.position="none")
 
 # The alpha filtration is now obtained as follows.
 
-filtration <- alphaComplexFiltration(df)
+filtration <- alphaComplexFiltration(df[,c("x", "y")])
 
 # To illustrate this filtration, we visualize the simplicial complexes for a few (increasing) time/alpha parameters.
 
@@ -45,7 +46,7 @@ for(idx in 1:length(alphas)){
     this_edges_I <- which(sapply(filtration$cmplx[this_simplices_I], function(s) length(s) == 2))
     if(length(this_edges_I) > 0){
       this_edges <- matrix(do.call("rbind", filtration$cmplx[this_simplices_I[this_edges_I]]), ncol=2)
-      this_edges <- data.frame(cbind(df[this_edges[,1],], df[this_edges[,2],]))
+      this_edges <- data.frame(cbind(df[this_edges[,1], c("x", "y")], df[this_edges[,2], c("x", "y")]))
       colnames(this_edges) <- c("x1", "y1", "x2", "y2")
       edges <- rbind(edges, this_edges)
     }
@@ -56,22 +57,22 @@ for(idx in 1:length(alphas)){
       this_triangles_vertex_I <- unlist(filtration$cmplx[this_simplices_I[this_triangles_I]])
       new_triangles_grouping <- rep((nrow(triangles) / 3 + 1):
                                       (nrow(triangles) / 3 + length(this_triangles_I)), each=3)
-      triangles <- rbind(triangles, cbind(id=new_triangles_grouping, df[this_triangles_vertex_I,]))
+      triangles <- rbind(triangles, cbind(id=new_triangles_grouping, df[this_triangles_vertex_I, c("x", "y")]))
     }
   }
   
   # Plot the simplicial complex
-  simpPlots[[length(simpPlots) + 1]] <- ggplot(df, aes(x=x, y=y)) +
-    geom_segment(data=edges, aes(x=x1, y=y1, xend=x2, yend=y2), color="black", size=0.5, alpha=0.5) +
-    geom_point(size=1.5, alpha=0.75) +
-    geom_polygon(data=triangles, aes(group=id), fill="green") +
-    geom_segment(data=edges, aes(x=x1, y=y1, xend=x2, yend=y2), color="black", size=0.5, alpha=0.5) +
-    geom_point(size=1.5, alpha=0.25) +
+  simpPlots[[length(simpPlots) + 1]] <- ggplot() +
+    geom_polygon(data=triangles, aes(x=x, y=y, group=id), fill="green", alpha=0.75) +
+    geom_segment(data=edges, aes(x=x1, y=y1, xend=x2, yend=y2), color="black", size=0.5, alpha=0.75) +
+    {if(nrow(edges) == 0) geom_point(data=df, aes(x=x, y=y, fill=group), size=1.25, pch=21)
+      else geom_point(data=df, aes(x=x, y=y), fill="black", size=1.25, pch=21, alpha=0.75)} +
     coord_fixed() +
     theme_bw() +
     ggtitle(TeX(sprintf("$\\alpha = %g$", alphas[idx]))) +
     scale_x_continuous(breaks = c(25, 50, 75)) +
-    theme(plot.title=element_text(hjust=0.5, size=22), text=element_text(size=20))
+    theme(plot.title=element_text(hjust=0.5, size=22), text=element_text(size=20),
+          legend.position="none")
 }
 
 grid.arrange(grobs=simpPlots, nrow=2, ncol=3)
