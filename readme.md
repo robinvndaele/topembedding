@@ -8,7 +8,7 @@ Topologically Regularized Data Embeddings
 ## Setup
 
 ### Enviroments
-* Python (jupyter notebook) 
+* Python (Jupyter notebook) 
 * R (Rstudio)
 
 ### Python requirements
