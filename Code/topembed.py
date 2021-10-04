@@ -20,15 +20,15 @@ from torch.nn.functional import binary_cross_entropy
 from sklearn.metrics import roc_auc_score
 
 # Embedding and topological loss functions
-from losses import pca_loss, ortho_loss, umap_loss, tsne_loss, zero_loss, deepwalk_loss
+from Code.losses import pca_loss, ortho_loss, umap_loss, tsne_loss, zero_loss, deepwalk_loss
 
 # Functions to initialize embeddings
 from sklearn.decomposition import PCA as skPCA
-from embedding_init import tsne_init, umap_init
+from Code.embedding_init import tsne_init, umap_init
 
 # Helper functions for network embedding
-from splitter import compute_tr_val_split, construct_adj_matrix
-from dataloader import config_network_loader, config_edge_loader
+from Code.splitter import compute_tr_val_split, construct_adj_matrix
+from Code.dataloader import config_network_loader, config_edge_loader
 
 
 def PCA(X, dim=2, emb_loss=True, top_loss=zero_loss, lambda_W=1e4, num_epochs=250, learning_rate=1e-3, eps=1e-07, random_state=None):

@@ -13998,13 +13998,13 @@ a.anchor-link {
 <span class="c1"># Pytorch compatible topology layer and losses</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">topologylayer.nn</span> <span class="kn">import</span> <span class="n">AlphaLayer</span>
-<span class="kn">from</span> <span class="nn">losses</span> <span class="kn">import</span> <span class="n">DiagramLoss</span><span class="p">,</span> <span class="n">deepwalk_loss</span>
+<span class="kn">from</span> <span class="nn">Code.losses</span> <span class="kn">import</span> <span class="n">DiagramLoss</span><span class="p">,</span> <span class="n">deepwalk_loss</span>
 
 <span class="c1"># Random sampling for topological loss</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
 <span class="c1"># Ordinary and topologically regularized graph embedding</span>
-<span class="kn">from</span> <span class="nn">topembed</span> <span class="kn">import</span> <span class="n">DeepWalk</span>
+<span class="kn">from</span> <span class="nn">Code.topembed</span> <span class="kn">import</span> <span class="n">DeepWalk</span>
 
 <span class="c1"># Plotting</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -14012,7 +14012,7 @@ a.anchor-link {
 
 <span class="c1"># Quantitative evaluation</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<span class="kn">from</span> <span class="nn">evaluation</span> <span class="kn">import</span> <span class="n">evaluate_embeddings</span>
+<span class="kn">from</span> <span class="nn">Code.evaluation</span> <span class="kn">import</span> <span class="n">evaluate_embeddings</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
@@ -14465,7 +14465,7 @@ Topological: -2.3883558654785157
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Machine learning model to be used for label prediction</span>
@@ -14501,17 +14501,17 @@ Topological: -2.3883558654785157
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <style type="text/css">
-#T_84c7a_row0_col0, #T_84c7a_row2_col0 {
+#T_b351c_row0_col0, #T_b351c_row2_col0 {
   background-color: lightgreen;
 }
 </style>
-<table id="T_84c7a_">
+<table id="T_b351c_">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
@@ -14521,19 +14521,19 @@ Topological: -2.3883558654785157
   </thead>
   <tbody>
     <tr>
-      <th id="T_84c7a_level0_row0" class="row_heading level0 row0" >emb</th>
-      <td id="T_84c7a_row0_col0" class="data row0 col0" >0.972500</td>
-      <td id="T_84c7a_row0_col1" class="data row0 col1" >0.078617</td>
+      <th id="T_b351c_level0_row0" class="row_heading level0 row0" >emb</th>
+      <td id="T_b351c_row0_col0" class="data row0 col0" >0.972500</td>
+      <td id="T_b351c_row0_col1" class="data row0 col1" >0.078617</td>
     </tr>
     <tr>
-      <th id="T_84c7a_level0_row1" class="row_heading level0 row1" >top. opt.</th>
-      <td id="T_84c7a_row1_col0" class="data row1 col0" >0.912500</td>
-      <td id="T_84c7a_row1_col1" class="data row1 col1" >0.139330</td>
+      <th id="T_b351c_level0_row1" class="row_heading level0 row1" >top. opt.</th>
+      <td id="T_b351c_row1_col0" class="data row1 col0" >0.912500</td>
+      <td id="T_b351c_row1_col1" class="data row1 col1" >0.139330</td>
     </tr>
     <tr>
-      <th id="T_84c7a_level0_row2" class="row_heading level0 row2" >top. reg.</th>
-      <td id="T_84c7a_row2_col0" class="data row2 col0" >0.972500</td>
-      <td id="T_84c7a_row2_col1" class="data row2 col1" >0.078617</td>
+      <th id="T_b351c_level0_row2" class="row_heading level0 row2" >top. reg.</th>
+      <td id="T_b351c_row2_col0" class="data row2 col0" >0.972500</td>
+      <td id="T_b351c_row2_col1" class="data row2 col1" >0.078617</td>
     </tr>
   </tbody>
 </table>

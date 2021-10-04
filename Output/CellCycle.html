@@ -13996,13 +13996,13 @@ a.anchor-link {
 <span class="c1"># Pytorch compatible topology layer and losses</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">topologylayer.nn</span> <span class="kn">import</span> <span class="n">AlphaLayer</span>
-<span class="kn">from</span> <span class="nn">losses</span> <span class="kn">import</span> <span class="n">DiagramLoss</span><span class="p">,</span> <span class="n">pca_loss</span><span class="p">,</span> <span class="n">ortho_loss</span>
+<span class="kn">from</span> <span class="nn">Code.losses</span> <span class="kn">import</span> <span class="n">DiagramLoss</span><span class="p">,</span> <span class="n">pca_loss</span><span class="p">,</span> <span class="n">ortho_loss</span>
 
 <span class="c1"># Random sampling for topological loss</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
 <span class="c1"># Ordinary and topologically regularized PCA embedding</span>
-<span class="kn">from</span> <span class="nn">topembed</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">Code.topembed</span> <span class="kn">import</span> <span class="n">PCA</span>
 
 <span class="c1"># Plotting</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -14010,7 +14010,7 @@ a.anchor-link {
 
 <span class="c1"># Quantitative evaluation</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<span class="kn">from</span> <span class="nn">evaluation</span> <span class="kn">import</span> <span class="n">evaluate_embeddings</span>
+<span class="kn">from</span> <span class="nn">Code.evaluation</span> <span class="kn">import</span> <span class="n">evaluate_embeddings</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
