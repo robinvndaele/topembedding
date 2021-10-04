@@ -1,9 +1,6 @@
-******************************************************************************************
 ***************** FOR REVIEWING PURPOSES ONLY. PLEASE DO NOT DISTRIBUTE. *****************
-******************************************************************************************
 ********************* BITBUCKET IS USED FOR ANONYMOUS CODE SHARING. **********************
 ********************* FINAL CODE SUBMISSION WILL BE THROUGH GITHUB. **********************
-******************************************************************************************
 
 This folder contains the source code for ICLR2022 submission 3034: 
 Topologically Regularized Data Embeddings
