@@ -14003,6 +14003,7 @@ a.anchor-link {
 
 <span class="c1"># Quantitative evaluation</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="kn">from</span> <span class="nn">sklearn.multioutput</span> <span class="kn">import</span> <span class="n">MultiOutputRegressor</span>
 <span class="kn">from</span> <span class="nn">Code.evaluation</span> <span class="kn">import</span> <span class="n">evaluate_embeddings</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -14041,7 +14042,7 @@ a.anchor-link {
 
 <span class="c1"># Plot the first two dimensions of the data two illustrate the circular model</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;husl&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;husl&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -14239,7 +14240,7 @@ a.anchor-link {
 [epoch 400] [emb. loss: 0.066544, ortho. loss: 377.594055, top. loss: -7.798023, total loss: 369.862579]
 [epoch 450] [emb. loss: 0.066521, ortho. loss: 311.904297, top. loss: -6.428357, total loss: 305.542480]
 [epoch 500] [emb. loss: 0.066493, ortho. loss: 310.406158, top. loss: -8.081623, total loss: 302.391022]
-Time for embedding: 00:00:10
+Time for embedding: 00:00:05
 </pre>
 </div>
 </div>
@@ -14320,7 +14321,7 @@ We observe that the results were much worse than when we accounted for the embed
 [epoch 400] [emb. loss: 0.000000, ortho. loss: 1454.978638, top. loss: -7.833032, total loss: 1447.145630]
 [epoch 450] [emb. loss: 0.000000, ortho. loss: 6961.562500, top. loss: -2.408313, total loss: 6959.154297]
 [epoch 500] [emb. loss: 0.000000, ortho. loss: 1272.623657, top. loss: -2.707522, total loss: 1269.916138]
-Time for embedding: 00:00:06
+Time for embedding: 00:00:05
 </pre>
 </div>
 </div>
@@ -14492,16 +14493,16 @@ Topological: -0.7508018016815186
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Machine learning model to be used for label prediction</span>
 <span class="n">Ys</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pca&quot;</span><span class="p">:</span> <span class="n">Y_pca</span><span class="p">,</span> <span class="s2">&quot;top. opt.&quot;</span><span class="p">:</span> <span class="n">Y_opt</span><span class="p">,</span> <span class="s2">&quot;top. reg.&quot;</span><span class="p">:</span> <span class="n">Y_top</span><span class="p">}</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">()</span>
-<span class="n">scoring</span> <span class="o">=</span> <span class="s2">&quot;angular&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MultiOutputRegressor</span><span class="p">(</span><span class="n">SVR</span><span class="p">())</span>
+<span class="n">scoring</span> <span class="o">=</span> <span class="s2">&quot;r2&quot;</span>
 
 <span class="c1"># Hyperparameters for quantitative evaluation</span>
 <span class="n">ntimes</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">test_frac</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;estimator__C&quot;</span><span class="p">:[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
 
 <span class="c1"># Obtain performances over multiple train-test splits</span>
-<span class="n">performances</span> <span class="o">=</span> <span class="n">evaluate_embeddings</span><span class="p">(</span><span class="n">Ys</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">scoring</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">ntimes</span><span class="o">=</span><span class="n">ntimes</span><span class="p">,</span> 
+<span class="n">performances</span> <span class="o">=</span> <span class="n">evaluate_embeddings</span><span class="p">(</span><span class="n">Ys</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">],</span> <span class="n">model</span><span class="p">,</span> <span class="n">scoring</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">ntimes</span><span class="o">=</span><span class="n">ntimes</span><span class="p">,</span> 
                                    <span class="n">test_frac</span><span class="o">=</span><span class="n">test_frac</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># View resulting performances</span>
@@ -14529,11 +14530,11 @@ Topological: -0.7508018016815186
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <style type="text/css">
-#T_2ad09_row2_col0 {
+#T_15c3e_row2_col0 {
   background-color: lightgreen;
 }
 </style>
-<table id="T_2ad09_">
+<table id="T_15c3e_">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
@@ -14543,19 +14544,19 @@ Topological: -0.7508018016815186
   </thead>
   <tbody>
     <tr>
-      <th id="T_2ad09_level0_row0" class="row_heading level0 row0" >pca</th>
-      <td id="T_2ad09_row0_col0" class="data row0 col0" >0.618402</td>
-      <td id="T_2ad09_row0_col1" class="data row0 col1" >0.724299</td>
+      <th id="T_15c3e_level0_row0" class="row_heading level0 row0" >pca</th>
+      <td id="T_15c3e_row0_col0" class="data row0 col0" >0.562144</td>
+      <td id="T_15c3e_row0_col1" class="data row0 col1" >0.472218</td>
     </tr>
     <tr>
-      <th id="T_2ad09_level0_row1" class="row_heading level0 row1" >top. opt.</th>
-      <td id="T_2ad09_row1_col0" class="data row1 col0" >0.576614</td>
-      <td id="T_2ad09_row1_col1" class="data row1 col1" >0.799762</td>
+      <th id="T_15c3e_level0_row1" class="row_heading level0 row1" >top. opt.</th>
+      <td id="T_15c3e_row1_col0" class="data row1 col0" >0.774822</td>
+      <td id="T_15c3e_row1_col1" class="data row1 col1" >0.244247</td>
     </tr>
     <tr>
-      <th id="T_2ad09_level0_row2" class="row_heading level0 row2" >top. reg.</th>
-      <td id="T_2ad09_row2_col0" class="data row2 col0" >0.658726</td>
-      <td id="T_2ad09_row2_col1" class="data row2 col1" >0.687920</td>
+      <th id="T_15c3e_level0_row2" class="row_heading level0 row2" >top. reg.</th>
+      <td id="T_15c3e_row2_col0" class="data row2 col0" >0.849050</td>
+      <td id="T_15c3e_row2_col1" class="data row2 col1" >0.137003</td>
     </tr>
   </tbody>
 </table>
