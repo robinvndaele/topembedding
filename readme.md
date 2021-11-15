@@ -23,6 +23,8 @@ Topologically Regularized Data Embeddings
 * networkx
 * scipy
 * umap-learn
+* Dionysus
+* diode
 
 ### R Requirements 
 * TDA
