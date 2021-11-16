@@ -85,8 +85,13 @@ diag <- filtrationDiag(filtration, maxdimension=1)
 
 # We can visualize the results of persistent homology through a persistence diagram.
 # In the diagram, a point (b, d) represent a topological hole/feature that persists from time b to d.
+# We also encircle the most prominent points in the 0-th and 1-st dimensional diagrams. 
 
-op <- par(mar = c(3.25, 3.25, 1, 1))
-plot.diagram(diag[["diagram"]], diagLim=c(0, 300))
+encircle <- rbind(diag[["diagram"]][1:4, c("Birth", "Death")],
+                  diag[["diagram"]][which(diag[["diagram"]][,"dimension"]==1)[1:2], c("Birth", "Death")])
+encircle[1, "Death"] <- 300 # cannot plot infinity, so choose a large number
+op <- par(mar = c(4.25, 4.25, 1, 1))
+plot(encircle[,"Birth"], encircle[,"Death"], cex=2.5, col="blue", xlim=c(0, 300), ylim=c(0, 300), xlab="Birth", ylab="Death")
+plot.diagram(diag[["diagram"]], diagLim=c(0, 300), add=TRUE)
 abline(h=300, lty=2) # line marking infinite death time
 legend(x=250, y=100, legend=c("H0", "H1"), col=c("black", "red"), pch=c(19, 2), pt.lwd=2, box.lty=0); par(op)
