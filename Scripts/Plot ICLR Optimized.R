@@ -17,7 +17,7 @@ for(file in list.files(file.path("Data", "ICLR Optimized"))){
 
 group <- read.table(file.path("Data", "ICLR.csv"))[["group"]]
 epochPlots <- list()
-for(epoch in as.character(sort(as.numeric(names(df))))){
+for(epoch in c("5", "50", "250", "1000")){
   this_df <- cbind(df[[epoch]], group)
   epochPlots[[length(epochPlots) + 1]] <- ggplot(this_df, aes(x=x, y=y, fill=group)) +
     geom_point(size=1.25, pch=21) +
@@ -30,4 +30,4 @@ for(epoch in as.character(sort(as.numeric(names(df))))){
           legend.position="none")
 }
 
-grid.arrange(grobs=epochPlots, nrow=2, ncol=3)
+grid.arrange(grobs=epochPlots, nrow=1, ncol=4)
