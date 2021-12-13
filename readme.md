@@ -1,8 +1,4 @@
-FOR REVIEWING PURPOSES ONLY. PLEASE DO NOT DISTRIBUTE.
-DROPBOX IS USED FOR ANONYMOUS CODE SHARING.
-FINAL CODE SUBMISSION WILL BE THROUGH GITHUB.
-
-This folder contains the source code for ICLR2022 submission 3034: 
+This folder contains the source code for arxiv submission https://arxiv.org/abs/2110.09193: 
 Topologically Regularized Data Embeddings
 
 ## Setup
@@ -11,17 +7,24 @@ Topologically Regularized Data Embeddings
 * Python (Jupyter notebook) 
 * R (Rstudio)
 
-### Python requirements
-* TopologyLayer (https://github.com/bruel-gabrielsson/TopologyLayer)
-* numpy
-* pandas
+### Python channels
 * pytorch
-* matplotlib
+* defaults
+* conda-forge
+
+### Python requirements
+* python=3.9.7
+* cudatoolkit=11.1.1
+* pytorch=1.9.0
+* TopologyLayer (https://github.com/bruel-gabrielsson/TopologyLayer)
+* numpy=1.21.2
+* matplotlib=3.4.3
+* scipy=1.7.1
+* pandas
 * rpy2
 * seaborn
 * scikit-learn
 * networkx
-* scipy
 * umap-learn
 * Dionysus
 * diode
