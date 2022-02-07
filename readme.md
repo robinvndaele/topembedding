@@ -1,5 +1,6 @@
-This folder contains the source code for arxiv submission https://arxiv.org/abs/2110.09193: 
-Topologically Regularized Data Embeddings
+This folder contains the code for the paper _'Topologically Regularized Data Embeddings'_, that will be presented at The 10th International Conference on Learning Representations (ICLR), 2022.
+
+arxiv submission: https://arxiv.org/abs/2110.09193
 
 ## Setup
 
