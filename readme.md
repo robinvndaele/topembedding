@@ -2,6 +2,8 @@ This folder contains the code for the paper _'Topologically Regularized Data Emb
 
 arxiv submission: https://arxiv.org/abs/2110.09193.
 
+Small correction: the paper mentions the use of the Alpha filtration. However, this should in matter of fact be the *weak* Alpha filtration, which can be seen as the Vietoris-Rips filtration on the Delaunay triangulation. The intuition behind its use and the paper, as well as the computational analysis remains the same however.
+
 ## Setup
 
 ### Enviroments
